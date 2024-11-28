@@ -67,11 +67,11 @@ public class AuthController : ControllerBase
             }
 
             // Associa o perfil de acesso ao usuário
-            var roleResult = await _userManager.AddToRoleAsync(user, "DefaultProfile"); // Troque para o nome do seu perfil
-            if (!roleResult.Succeeded)
-            {
-                return BadRequest(roleResult.Errors);
-            }
+            // var roleResult = await _userManager.AddToRoleAsync(user, "DefaultProfile"); // Troque para o nome do seu perfil
+            //if (!roleResult.Succeeded)
+            //{
+            //    return BadRequest(roleResult.Errors);
+            //}
         }
 
         // Garante que o login externo está associado ao usuário
@@ -91,12 +91,13 @@ public class AuthController : ControllerBase
         //}
 
 
-        var loginResult = await _userManager.AddLoginAsync(user, info);
-        var profile = await _userManager.IsInRoleAsync(user, "DefaultProfile");
-        if (!loginResult.Succeeded && !profile)
-        {
-            return BadRequest(loginResult.Errors);
-        }
+        //var loginResult = await _userManager.AddLoginAsync(user, info);
+
+        //var profile = await _userManager.IsInRoleAsync(user, "DefaultProfile");
+        //if (!loginResult.Succeeded)
+        //{
+        //    return BadRequest(loginResult.Errors);
+        //}
 
         // Faz o login do usuário
         await _signInManager.SignInAsync(user, isPersistent: false);
